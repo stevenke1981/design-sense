@@ -5,6 +5,8 @@ import { checkText } from '../lib/detector.mjs';
 import { RULES } from '../lib/rules.mjs';
 import { contrastRatio, parseColor } from '../lib/color.mjs';
 import { run } from '../bin/design-sense.mjs';
+import { fileURLToPath } from 'node:url';
+import { sep } from 'node:path';
 
 const fx = (n) => readFileSync(new URL(`./fixtures/${n}`, import.meta.url), 'utf8');
 const rules = (n) => new Set(checkText(fx(n), n).map((f) => f.rule));
@@ -75,8 +77,8 @@ test('suppressions and config', () => {
 test('CLI exit codes and JSON', () => {
   const out = [];
   const io = { out: (s) => out.push(s), err: (s) => out.push(s) };
-  const cfg = ['--config', new URL('./empty-config.json', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')];
-  const dir = new URL('./fixtures/', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
+  const cfg = ['--config', fileURLToPath(new URL('./empty-config.json', import.meta.url))];
+  const dir = fileURLToPath(new URL('./fixtures/', import.meta.url));
   assert.equal(run(['check', dir + 'good.html', ...cfg], io), 0);
   assert.equal(run(['check', dir + 'bad.html', ...cfg], io), 1);
   assert.equal(run(['check', dir + 'bad.html', ...cfg, '--fail-on', 'none'], io), 0);

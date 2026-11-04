@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NoteFlow 筆記</title>
+<style>
+  :root { --paper: #f7f5f0; --ink: #1d1f23; --muted: #555a61; --accent: #a8431f; --line: #ddd8cd; }
+  body { margin: 0; font-family: "Noto Serif TC", "PingFang TC", "Microsoft JhengHei UI", serif; line-height: 1.75; color: #1d1f23; background: #f7f5f0; }
+  .wrap { max-width: 64rem; width: 100%; margin: 0 auto; padding: 64px 24px; box-sizing: border-box; }
+  h1 { font-size: 44px; line-height: 1.3; margin: 0 0 16px; font-weight: 800; }
+  .lead { font-size: 19px; color: #555a61; max-width: 34em; }
+  .btn { display: inline-block; padding: 12px 20px; border-radius: 6px; background: #a8431f; color: #ffffff; border: 0; font: inherit; font-weight: 700; }
+  .btn:focus-visible, input:focus-visible { outline: 3px solid #1d1f23; outline-offset: 2px; }
+  form { display: flex; gap: 12px; flex-wrap: wrap; margin: 24px 0 48px; }
+  input { padding: 12px 14px; border: 1px solid #8a857b; border-radius: 6px; font: inherit; min-width: 16rem; }
+  .list { border-top: 1px solid #ddd8cd; padding: 0; margin: 0; list-style: none; }
+  .list li { display: grid; grid-template-columns: 9rem 1fr; gap: 16px; padding: 20px 0; border-bottom: 1px solid #ddd8cd; }
+  .list strong { font-size: 18px; }
+  .shot { width: 100%; height: auto; border: 1px solid #ddd8cd; border-radius: 8px; margin-top: 40px; }
+  @media (prefers-reduced-motion: no-preference) { .btn { transition: background-color .15s; } .btn:hover { background-color: #8f3618; } }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>開會時記下的東西，<br>下週還找得到。</h1>
+    <p class="lead">NoteFlow 把會議筆記自動依專案和日期整理。搜尋「預算」就能找到三個月前那句話，不用翻資料夾。</p>
+    <form>
+      <label for="mail">電子郵件</label>
+      <input id="mail" type="email" autocomplete="email">
+      <button class="btn" type="submit">免費試用 14 天</button>
+    </form>
+    <ul class="list">
+      <li><strong>0.2 秒搜尋</strong><span>一萬則筆記內全文搜尋，含注音輸入的錯字容錯。</span></li>
+      <li><strong>只存在你的電腦</strong><span>筆記預設存在本機，雲端同步要你自己打開。</span></li>
+      <li><strong>自動分類</strong><span>依會議標題和參加者歸檔，分錯了拖一下就好。</span></li>
+    </ul>
+    <img class="shot" src="app.png" alt="NoteFlow 主畫面：左側專案列表、右側筆記內容" width="1024" height="640">
+  </main>
+</body>
+</html>

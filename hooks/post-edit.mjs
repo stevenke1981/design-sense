@@ -5,6 +5,7 @@
 // Output: for Claude Code, JSON with hookSpecificOutput.additionalContext so the agent sees findings.
 import { readFileSync, existsSync, statSync } from 'node:fs';
 import { resolve, isAbsolute, relative } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const MAX_BYTES = 512 * 1024;
 const SHOW = new Set(['P0', 'P1', 'P2']);
@@ -41,7 +42,7 @@ async function main() {
   process.exit(0);
 }
 
-const self = new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
+const self = fileURLToPath(import.meta.url);
 if (process.argv[1] && resolve(process.argv[1]) === resolve(self)) {
   const timer = setTimeout(() => process.exit(0), 5000); // never hang the agent
   timer.unref();

@@ -1,0 +1,24 @@
+
+docs/demo/sloppy.slint
+     2:2   P2 slint/window-min-size  export component MainWindow inherits Window has no min-width/min-height
+            fix: Set min-width/min-height (or a root layout with min sizes) on the Window.
+     2:2   P2 slint/default-font  Window has CJK text but no default-font-family
+            fix: Set default-font-family: "Microsoft JhengHei UI" on the Window (and bundle/declare fallbacks).
+     8:10  P2 slop/purple-blue-gradient  violet/blue gradient
+            fix: Use a flat brand color, a gradient within one hue family, or real imagery.
+     9:14  P1 cjk/italic  font-italic: true in a file with CJK text
+            fix: Emphasise CJK with weight, color, or 着重號 (text-emphasis) instead.
+     9:14  P2 slop/emoji-icons  emoji in text: "🚀 超快下載器"
+            fix: Use an SVG icon set with a consistent stroke, plus a text label or tooltip.
+    11:14  P2 slint/icon-button-tooltip  Button with icon and no text/tooltip
+            fix: Show a tooltip on hover (TouchArea has-hover) and set accessible-label.
+    12:14  P2 slint/icon-button-tooltip  Button with icon and no text/tooltip
+            fix: Show a tooltip on hover (TouchArea has-hover) and set accessible-label.
+    13:14  P2 slint/icon-button-tooltip  Button with icon and no text/tooltip
+            fix: Show a tooltip on hover (TouchArea has-hover) and set accessible-label.
+    16:14  P2 type/tiny-font  font-size: 10px
+            fix: Use ≥14px for body, ≥12px for captions; CJK body text ≥15px.
+    16:14  P1 a11y/contrast  #5b5670 on #2a2540 = 2.09:1 (needs 4.5:1)
+            fix: Darken/lighten the text or background until the ratio reaches 4.5:1.
+
+1 file(s), 10 finding(s): P0 0 · P1 2 · P2 8 · P3 0

@@ -1,0 +1,21 @@
+name: Release
+on:
+  push: { tags: ['v*'] }
+permissions: { contents: write }
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm test
+      - name: Package
+        run: |
+          V=${GITHUB_REF_NAME}
+          mkdir -p dist/design-sense-$V
+          cp -r bin lib hooks skills adapters .claude-plugin install.mjs install.sh install.ps1 package.json action.yml LICENSE NOTICE.md README.md README.en.md dist/design-sense-$V/
+          cd dist && zip -qr design-sense-$V.zip design-sense-$V && sha256sum design-sense-$V.zip > SHA256SUMS.txt && cat SHA256SUMS.txt
+      - name: Publish
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: gh release create "$GITHUB_REF_NAME" dist/*.zip dist/SHA256SUMS.txt --title "design-sense $GITHUB_REF_NAME" --notes-file docs/RELEASE_NOTES.md --latest

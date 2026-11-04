@@ -1,0 +1,37 @@
+import { Button } from "std-widgets.slint";
+export global Theme {
+    out property <color> bg: #f6f7f9;
+    out property <color> surface: #ffffff;
+    out property <color> ink: #1f2328;
+    out property <color> muted: #57606a;
+}
+component IconButton inherits Rectangle {
+    in property <image> icon;
+    in property <string> tip;
+    callback clicked;
+    accessible-role: button;
+    accessible-label: tip;
+    width: 32px; height: 32px;
+    Image { source: icon; colorize: Theme.ink; width: 18px; }
+    ta := TouchArea { clicked => { root.clicked(); } }
+    if ta.has-hover: Rectangle { y: parent.height + 4px; background: Theme.ink;
+        Text { text: tip; color: Theme.surface; font-size: 12px; } }
+}
+export component MainWindow inherits Window {
+    title: "下載管理";
+    min-width: 560px; min-height: 360px;
+    preferred-width: 720px; preferred-height: 480px;
+    default-font-family: "Microsoft JhengHei UI";
+    background: Theme.bg;
+    VerticalLayout {
+        padding: 16px; spacing: 12px;
+        Text { text: "下載管理"; color: Theme.ink; font-size: 22px; font-weight: 700; }
+        HorizontalLayout { spacing: 8px; alignment: start;
+            IconButton { icon: @image-url("icons/add.svg"); tip: "新增下載 (Ctrl+N)"; }
+            IconButton { icon: @image-url("icons/pause.svg"); tip: "暫停"; }
+            IconButton { icon: @image-url("icons/delete.svg"); tip: "刪除"; }
+        }
+        Rectangle { background: Theme.surface;
+            Text { text: "等待中…"; color: Theme.muted; font-size: 13px; } }
+    }
+}

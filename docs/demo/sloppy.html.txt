@@ -1,0 +1,54 @@
+
+docs/demo/sloppy.html
+     2:1   P2 html/lang-missing  <html> has no lang
+            fix: Set <html lang="zh-Hant-TW"> or the right language.
+     2:1   P2 layout/viewport-missing  no <meta name="viewport">
+            fix: Add <meta name="viewport" content="width=device-width, initial-scale=1">.
+     7:8   P3 slop/inter-only  font stack is only ""Inter", system-ui, sans-serif"
+            fix: Pick a display or text face that fits the product, and keep Inter only as a fallback if at all.
+     7:8   P2 cjk/missing-font  page contains CJK text but no font-family lists a CJK face
+            fix: Add "Microsoft JhengHei UI", "PingFang TC", "Noto Sans TC" before the generic family.
+     7:8   P2 cjk/line-height  line-height 1.3 on "body" with CJK content
+            fix: Use line-height 1.6–1.8 for zh-TW paragraphs.
+     8:9   P3 layout/100vh  height: 100vh
+            fix: Use 100dvh (with 100vh fallback) or min-height.
+     8:23  P2 slop/purple-blue-gradient  gradient mixes violet with blue/pink
+            fix: Use a flat brand color, a gradient within one hue family, or real imagery.
+     9:12  P1 cjk/italic  font-style: italic on ".hero h1" in a CJK document
+            fix: Emphasise CJK with weight, color, or 着重號 (text-emphasis) instead.
+    10:11  P1 a11y/contrast  #a1a1aa on #6d28d9 = 2.77:1 (needs 4.5:1)
+            fix: Darken/lighten the text or background until the ratio reaches 4.5:1.
+    11:8   P1 a11y/focus-removed  outline: none on ".btn" and no :focus-visible style in file
+            fix: Keep outline, or provide a clear :focus-visible style.
+    11:8   P3 perf/transition-all  transition: all .3s
+            fix: List the properties: transition: opacity .2s, transform .2s.
+    11:8   P3 layout/cramped-button  padding: 4px 4px on ".btn"
+            fix: Use at least 8px vertical / 12–16px horizontal padding.
+    11:100 P2 a11y/reduced-motion  animation/transition with no reduced-motion handling
+            fix: Wrap non-essential animation in @media (prefers-reduced-motion: no-preference).
+    12:9   P2 layout/fixed-width  width: 1100px
+            fix: Use max-width with width:100%, or fluid units / grid.
+    14:79  P2 slop/purple-blue-gradient  gradient mixes violet with blue/pink
+            fix: Use a flat brand color, a gradient within one hue family, or real imagery.
+    15:10  P2 type/tiny-font  font-size 10px (≈10px)
+            fix: Use ≥14px for body, ≥12px for captions; CJK body text ≥15px.
+    22:5   P2 slop/emoji-icons  emoji in <h1>: "🚀 Unlock the power of 智慧筆記"
+            fix: Use an SVG icon set with a consistent stroke, plus a text label or tooltip.
+    22:12  P3 slop/hype-copy  "Unlock the power"
+            fix: State the concrete outcome, number, or feature instead.
+    24:5   P2 slop/emoji-icons  emoji in <button>: "✨ 立即開始"
+            fix: Use an SVG icon set with a consistent stroke, plus a text label or tooltip.
+    25:5   P1 a11y/input-label  <input type=email> has no label
+            fix: Wrap in <label>, link with for/id, or add aria-label.
+    28:23  P3 slop/icon-tile-heading  3 icon-tile + heading blocks
+            fix: Vary the layout, use real screenshots/numbers, or drop the decorative icons.
+    28:56  P2 a11y/heading-skip  h1 → h3
+            fix: Use consecutive levels; style with CSS, not by picking a smaller tag.
+    28:68  P2 slop/nested-cards  <div class="card"> inside another card
+            fix: Flatten: keep the outer container and turn the inner one into a plain section, list row or divider.
+    32:3   P1 a11y/img-alt  <img> has no alt attribute
+            fix: Add alt text, or alt="" for purely decorative images.
+    32:3   P3 perf/img-dimensions  <img> missing width/height
+            fix: Set width/height attributes or aspect-ratio.
+
+1 file(s), 25 finding(s): P0 0 · P1 5 · P2 13 · P3 7

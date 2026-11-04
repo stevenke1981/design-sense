@@ -1,0 +1,362 @@
+{
+  "version": "0.1.0",
+  "files": 4,
+  "counts": {
+    "P0": 0,
+    "P1": 7,
+    "P2": 21,
+    "P3": 7
+  },
+  "findings": [
+    {
+      "rule": "html/lang-missing",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.html",
+      "line": 2,
+      "col": 1,
+      "message": "<html> has no lang",
+      "title": "<html> without lang",
+      "fix": "Set <html lang=\"zh-Hant-TW\"> or the right language."
+    },
+    {
+      "rule": "layout/viewport-missing",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.html",
+      "line": 2,
+      "col": 1,
+      "message": "no <meta name=\"viewport\">",
+      "title": "No responsive viewport meta",
+      "fix": "Add <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">."
+    },
+    {
+      "rule": "slop/inter-only",
+      "severity": "P3",
+      "file": "docs/demo/sloppy.html",
+      "line": 7,
+      "col": 8,
+      "message": "font stack is only \"\"Inter\", system-ui, sans-serif\"",
+      "title": "Inter (or system-ui) is the only typeface",
+      "fix": "Pick a display or text face that fits the product, and keep Inter only as a fallback if at all."
+    },
+    {
+      "rule": "cjk/missing-font",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.html",
+      "line": 7,
+      "col": 8,
+      "message": "page contains CJK text but no font-family lists a CJK face",
+      "title": "CJK text with no CJK font in the stack",
+      "fix": "Add \"Microsoft JhengHei UI\", \"PingFang TC\", \"Noto Sans TC\" before the generic family."
+    },
+    {
+      "rule": "cjk/line-height",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.html",
+      "line": 7,
+      "col": 8,
+      "message": "line-height 1.3 on \"body\" with CJK content",
+      "title": "CJK body line-height under 1.5",
+      "fix": "Use line-height 1.6–1.8 for zh-TW paragraphs."
+    },
+    {
+      "rule": "layout/100vh",
+      "severity": "P3",
+      "file": "docs/demo/sloppy.html",
+      "line": 8,
+      "col": 9,
+      "message": "height: 100vh",
+      "title": "height: 100vh",
+      "fix": "Use 100dvh (with 100vh fallback) or min-height."
+    },
+    {
+      "rule": "slop/purple-blue-gradient",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.html",
+      "line": 8,
+      "col": 23,
+      "message": "gradient mixes violet with blue/pink",
+      "title": "Purple→blue / violet→pink gradient",
+      "fix": "Use a flat brand color, a gradient within one hue family, or real imagery."
+    },
+    {
+      "rule": "cjk/italic",
+      "severity": "P1",
+      "file": "docs/demo/sloppy.html",
+      "line": 9,
+      "col": 12,
+      "message": "font-style: italic on \".hero h1\" in a CJK document",
+      "title": "Italic applied to CJK text",
+      "fix": "Emphasise CJK with weight, color, or 着重號 (text-emphasis) instead."
+    },
+    {
+      "rule": "a11y/contrast",
+      "severity": "P1",
+      "file": "docs/demo/sloppy.html",
+      "line": 10,
+      "col": 11,
+      "message": "#a1a1aa on #6d28d9 = 2.77:1 (needs 4.5:1)",
+      "title": "Text contrast below WCAG AA",
+      "fix": "Darken/lighten the text or background until the ratio reaches 4.5:1."
+    },
+    {
+      "rule": "a11y/focus-removed",
+      "severity": "P1",
+      "file": "docs/demo/sloppy.html",
+      "line": 11,
+      "col": 8,
+      "message": "outline: none on \".btn\" and no :focus-visible style in file",
+      "title": "Focus outline removed without replacement",
+      "fix": "Keep outline, or provide a clear :focus-visible style."
+    },
+    {
+      "rule": "perf/transition-all",
+      "severity": "P3",
+      "file": "docs/demo/sloppy.html",
+      "line": 11,
+      "col": 8,
+      "message": "transition: all .3s",
+      "title": "transition: all",
+      "fix": "List the properties: transition: opacity .2s, transform .2s."
+    },
+    {
+      "rule": "layout/cramped-button",
+      "severity": "P3",
+      "file": "docs/demo/sloppy.html",
+      "line": 11,
+      "col": 8,
+      "message": "padding: 4px 4px on \".btn\"",
+      "title": "Button padding ≤4px",
+      "fix": "Use at least 8px vertical / 12–16px horizontal padding."
+    },
+    {
+      "rule": "a11y/reduced-motion",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.html",
+      "line": 11,
+      "col": 100,
+      "message": "animation/transition with no reduced-motion handling",
+      "title": "Animation without prefers-reduced-motion",
+      "fix": "Wrap non-essential animation in @media (prefers-reduced-motion: no-preference)."
+    },
+    {
+      "rule": "layout/fixed-width",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.html",
+      "line": 12,
+      "col": 9,
+      "message": "width: 1100px",
+      "title": "Large fixed pixel width",
+      "fix": "Use max-width with width:100%, or fluid units / grid."
+    },
+    {
+      "rule": "slop/purple-blue-gradient",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.html",
+      "line": 14,
+      "col": 79,
+      "message": "gradient mixes violet with blue/pink",
+      "title": "Purple→blue / violet→pink gradient",
+      "fix": "Use a flat brand color, a gradient within one hue family, or real imagery."
+    },
+    {
+      "rule": "type/tiny-font",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.html",
+      "line": 15,
+      "col": 10,
+      "message": "font-size 10px (≈10px)",
+      "title": "Font size below 12px",
+      "fix": "Use ≥14px for body, ≥12px for captions; CJK body text ≥15px."
+    },
+    {
+      "rule": "slop/emoji-icons",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.html",
+      "line": 22,
+      "col": 5,
+      "message": "emoji in <h1>: \"🚀 Unlock the power of 智慧筆記\"",
+      "title": "Emoji used as UI icons",
+      "fix": "Use an SVG icon set with a consistent stroke, plus a text label or tooltip."
+    },
+    {
+      "rule": "slop/hype-copy",
+      "severity": "P3",
+      "file": "docs/demo/sloppy.html",
+      "line": 22,
+      "col": 12,
+      "message": "\"Unlock the power\"",
+      "title": "Hype marketing filler",
+      "fix": "State the concrete outcome, number, or feature instead."
+    },
+    {
+      "rule": "slop/emoji-icons",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.html",
+      "line": 24,
+      "col": 5,
+      "message": "emoji in <button>: \"✨ 立即開始\"",
+      "title": "Emoji used as UI icons",
+      "fix": "Use an SVG icon set with a consistent stroke, plus a text label or tooltip."
+    },
+    {
+      "rule": "a11y/input-label",
+      "severity": "P1",
+      "file": "docs/demo/sloppy.html",
+      "line": 25,
+      "col": 5,
+      "message": "<input type=email> has no label",
+      "title": "Form control without a label",
+      "fix": "Wrap in <label>, link with for/id, or add aria-label."
+    },
+    {
+      "rule": "slop/icon-tile-heading",
+      "severity": "P3",
+      "file": "docs/demo/sloppy.html",
+      "line": 28,
+      "col": 23,
+      "message": "3 icon-tile + heading blocks",
+      "title": "Icon tile above every heading",
+      "fix": "Vary the layout, use real screenshots/numbers, or drop the decorative icons."
+    },
+    {
+      "rule": "a11y/heading-skip",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.html",
+      "line": 28,
+      "col": 56,
+      "message": "h1 → h3",
+      "title": "Skipped heading level",
+      "fix": "Use consecutive levels; style with CSS, not by picking a smaller tag."
+    },
+    {
+      "rule": "slop/nested-cards",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.html",
+      "line": 28,
+      "col": 68,
+      "message": "<div class=\"card\"> inside another card",
+      "title": "Card inside a card",
+      "fix": "Flatten: keep the outer container and turn the inner one into a plain section, list row or divider."
+    },
+    {
+      "rule": "a11y/img-alt",
+      "severity": "P1",
+      "file": "docs/demo/sloppy.html",
+      "line": 32,
+      "col": 3,
+      "message": "<img> has no alt attribute",
+      "title": "Image without alt",
+      "fix": "Add alt text, or alt=\"\" for purely decorative images."
+    },
+    {
+      "rule": "perf/img-dimensions",
+      "severity": "P3",
+      "file": "docs/demo/sloppy.html",
+      "line": 32,
+      "col": 3,
+      "message": "<img> missing width/height",
+      "title": "Image without width/height",
+      "fix": "Set width/height attributes or aspect-ratio."
+    },
+    {
+      "rule": "slint/window-min-size",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.slint",
+      "line": 2,
+      "col": 2,
+      "message": "export component MainWindow inherits Window has no min-width/min-height",
+      "title": "Window without min-width/min-height",
+      "fix": "Set min-width/min-height (or a root layout with min sizes) on the Window."
+    },
+    {
+      "rule": "slint/default-font",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.slint",
+      "line": 2,
+      "col": 2,
+      "message": "Window has CJK text but no default-font-family",
+      "title": "Window without default-font-family (CJK app)",
+      "fix": "Set default-font-family: \"Microsoft JhengHei UI\" on the Window (and bundle/declare fallbacks)."
+    },
+    {
+      "rule": "slop/purple-blue-gradient",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.slint",
+      "line": 8,
+      "col": 10,
+      "message": "violet/blue gradient",
+      "title": "Purple→blue / violet→pink gradient",
+      "fix": "Use a flat brand color, a gradient within one hue family, or real imagery."
+    },
+    {
+      "rule": "cjk/italic",
+      "severity": "P1",
+      "file": "docs/demo/sloppy.slint",
+      "line": 9,
+      "col": 14,
+      "message": "font-italic: true in a file with CJK text",
+      "title": "Italic applied to CJK text",
+      "fix": "Emphasise CJK with weight, color, or 着重號 (text-emphasis) instead."
+    },
+    {
+      "rule": "slop/emoji-icons",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.slint",
+      "line": 9,
+      "col": 14,
+      "message": "emoji in text: \"🚀 超快下載器\"",
+      "title": "Emoji used as UI icons",
+      "fix": "Use an SVG icon set with a consistent stroke, plus a text label or tooltip."
+    },
+    {
+      "rule": "slint/icon-button-tooltip",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.slint",
+      "line": 11,
+      "col": 14,
+      "message": "Button with icon and no text/tooltip",
+      "title": "Icon-only button without tooltip/name",
+      "fix": "Show a tooltip on hover (TouchArea has-hover) and set accessible-label."
+    },
+    {
+      "rule": "slint/icon-button-tooltip",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.slint",
+      "line": 12,
+      "col": 14,
+      "message": "Button with icon and no text/tooltip",
+      "title": "Icon-only button without tooltip/name",
+      "fix": "Show a tooltip on hover (TouchArea has-hover) and set accessible-label."
+    },
+    {
+      "rule": "slint/icon-button-tooltip",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.slint",
+      "line": 13,
+      "col": 14,
+      "message": "Button with icon and no text/tooltip",
+      "title": "Icon-only button without tooltip/name",
+      "fix": "Show a tooltip on hover (TouchArea has-hover) and set accessible-label."
+    },
+    {
+      "rule": "type/tiny-font",
+      "severity": "P2",
+      "file": "docs/demo/sloppy.slint",
+      "line": 16,
+      "col": 14,
+      "message": "font-size: 10px",
+      "title": "Font size below 12px",
+      "fix": "Use ≥14px for body, ≥12px for captions; CJK body text ≥15px."
+    },
+    {
+      "rule": "a11y/contrast",
+      "severity": "P1",
+      "file": "docs/demo/sloppy.slint",
+      "line": 16,
+      "col": 14,
+      "message": "#5b5670 on #2a2540 = 2.09:1 (needs 4.5:1)",
+      "title": "Text contrast below WCAG AA",
+      "fix": "Darken/lighten the text or background until the ratio reaches 4.5:1."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+name: design-sense check
+description: Deterministic UI lint (web, Slint, SVG) — no network, no dependencies.
+branding: { icon: eye, color: orange }
+inputs:
+  paths: { description: 'Files or folders to scan (space separated)', default: '.' }
+  fail-on: { description: 'P0, P1, P2, P3 or none', default: 'P1' }
+  min: { description: 'Lowest severity to report', default: 'P3' }
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v4
+      with: { node-version: 22 }
+    - shell: bash
+      env:
+        DS_PATHS: ${{ inputs.paths }}
+        DS_FAIL: ${{ inputs.fail-on }}
+        DS_MIN: ${{ inputs.min }}
+      run: |
+        read -r -a P <<< "$DS_PATHS"
+        node "$GITHUB_ACTION_PATH/bin/design-sense.mjs" check "${P[@]}" --fail-on "$DS_FAIL" --min "$DS_MIN" --no-color

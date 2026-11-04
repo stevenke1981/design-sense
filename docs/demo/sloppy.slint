@@ -1,0 +1,18 @@
+import { Button } from "std-widgets.slint";
+export component MainWindow inherits Window {
+    title: "下載管理";
+    width: 720px; height: 480px;
+    background: #1e1b2e;
+    VerticalLayout {
+        padding: 16px; spacing: 8px;
+        Rectangle { height: 64px; background: @linear-gradient(90deg, #7c3aed 0%, #2563eb 100%);
+            Text { text: "🚀 超快下載器"; color: #ffffff; font-size: 22px; font-italic: true; } }
+        HorizontalLayout { spacing: 4px;
+            Button { icon: @image-url("icons/add.svg"); }
+            Button { icon: @image-url("icons/pause.svg"); }
+            Button { icon: @image-url("icons/delete.svg"); }
+        }
+        Rectangle { background: #2a2540;
+            Text { text: "等待中…"; color: #5b5670; font-size: 10px; } }
+    }
+}

@@ -2,6 +2,7 @@
 // design-sense CLI — deterministic UI lint. No network, no dependencies.
 import { readFileSync, statSync, readdirSync, existsSync } from 'node:fs';
 import { join, relative, resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { checkText, kindOf } from '../lib/detector.mjs';
 import { RULES, RULE_MAP, SEVERITIES } from '../lib/rules.mjs';
 
@@ -117,6 +118,6 @@ export function run(argv, io = { out: (s) => process.stdout.write(s + '\n'), err
   return failing ? 1 : 0;
 }
 
-const isMain = process.argv[1] && resolve(process.argv[1]) === resolve(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
+const isMain = process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url);
 process.stdout.on('error', (e) => { if (e.code === 'EPIPE') process.exit(process.exitCode ?? 0); });
 if (isMain) process.exitCode = run(process.argv.slice(2));
