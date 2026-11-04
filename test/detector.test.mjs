@@ -75,13 +75,14 @@ test('suppressions and config', () => {
 test('CLI exit codes and JSON', () => {
   const out = [];
   const io = { out: (s) => out.push(s), err: (s) => out.push(s) };
+  const cfg = ['--config', new URL('./empty-config.json', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')];
   const dir = new URL('./fixtures/', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
-  assert.equal(run(['check', dir + 'good.html'], io), 0);
-  assert.equal(run(['check', dir + 'bad.html'], io), 1);
-  assert.equal(run(['check', dir + 'bad.html', '--fail-on', 'none'], io), 0);
+  assert.equal(run(['check', dir + 'good.html', ...cfg], io), 0);
+  assert.equal(run(['check', dir + 'bad.html', ...cfg], io), 1);
+  assert.equal(run(['check', dir + 'bad.html', ...cfg, '--fail-on', 'none'], io), 0);
   assert.equal(run(['check', dir + 'nope.html'], io), 2);
   out.length = 0;
-  run(['check', dir + 'bad.svg', '--json'], io);
+  run(['check', dir + 'bad.svg', ...cfg, '--json'], io);
   const j = JSON.parse(out.join('\n'));
   assert.equal(j.findings[0].rule, 'svg/no-viewbox');
   assert.equal(run(['explain', 'cjk/italic'], io), 0);
