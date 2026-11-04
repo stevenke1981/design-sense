@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-labelledby="t d" font-family="'Microsoft JhengHei UI','Microsoft JhengHei','Noto Sans TC','Noto Sans CJK TC',sans-serif">
+  <title id="t">Aurora 語音 v2.0 上線</title>
+  <desc id="d">深色背景上的玻璃質感卡片與金屬按鈕，宣告新版本支援 Vulkan 加速。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1522"/><stop offset="1" stop-color="#070b12"/></linearGradient>
+    <radialGradient id="ga" cx="0.15" cy="0.12" r="0.6"><stop offset="0" stop-color="#14b8a6" stop-opacity=".55"/><stop offset="1" stop-color="#14b8a6" stop-opacity="0"/></radialGradient>
+    <radialGradient id="gb" cx="0.9" cy="0.25" r="0.5"><stop offset="0" stop-color="#f59e0b" stop-opacity=".4"/><stop offset="1" stop-color="#f59e0b" stop-opacity="0"/></radialGradient>
+    <radialGradient id="gc" cx="0.7" cy="1" r="0.6"><stop offset="0" stop-color="#f4725e" stop-opacity=".35"/><stop offset="1" stop-color="#f4725e" stop-opacity="0"/></radialGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".55" stop-color="#fff" stop-opacity=".04"/><stop offset="1" stop-color="#fff" stop-opacity=".02"/></linearGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".4" stop-color="#fff" stop-opacity=".08"/><stop offset="1" stop-color="#fff" stop-opacity=".2"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff1c9"/><stop offset=".36" stop-color="#f0c65a"/><stop offset=".54" stop-color="#b8862a"/><stop offset="1" stop-color="#f5d684"/></linearGradient>
+    <linearGradient id="bevel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".12" stop-color="#fff" stop-opacity="0"/><stop offset=".88" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></linearGradient>
+    <radialGradient id="led" cx=".35" cy=".3" r=".7"><stop offset="0" stop-color="#ffb4a6"/><stop offset=".6" stop-color="#e5484d"/><stop offset="1" stop-color="#9b1c1f"/></radialGradient>
+    <linearGradient id="ti" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a94a3"/><stop offset=".4" stop-color="#4d5664"/><stop offset=".56" stop-color="#2e3540"/><stop offset="1" stop-color="#6b7584"/></linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="30" stdDeviation="34" flood-color="#000" flood-opacity=".55"/></filter>
+    <filter id="blur" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="40"/></filter>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <rect width="1080" height="1080" fill="url(#ga)"/><rect width="1080" height="1080" fill="url(#gb)"/><rect width="1080" height="1080" fill="url(#gc)"/>
+  <!-- light blobs that the "glass" appears to frost -->
+  <circle cx="820" cy="300" r="120" fill="#f0c65a" opacity=".55" filter="url(#blur)"/>
+  <circle cx="250" cy="820" r="140" fill="#2dd4bf" opacity=".45" filter="url(#blur)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="100" y="150" width="880" height="780" rx="56" fill="#101826" fill-opacity=".72"/>
+  </g>
+  <rect x="100" y="150" width="880" height="780" rx="56" fill="url(#glass)"/>
+  <rect x="100.75" y="150.75" width="878.5" height="778.5" rx="55.5" fill="none" stroke="url(#rim)" stroke-width="1.5"/>
+
+  <rect x="170" y="222" width="72" height="72" rx="20" fill="url(#gold)"/>
+  <rect x="170.5" y="222.5" width="71" height="71" rx="19.5" fill="none" stroke="url(#bevel)"/>
+  <text x="270" y="270" font-size="34" font-weight="700" fill="#f3f6fb">Aurora 語音</text>
+
+  <rect x="170" y="350" width="270" height="52" rx="26" fill="#2dd4bf" fill-opacity=".16" stroke="#2dd4bf" stroke-opacity=".5"/>
+  <text x="305" y="385" font-size="24" font-weight="700" fill="#f3f6fb" text-anchor="middle">v2.0 正式上線</text>
+
+  <text font-size="84" font-weight="800" fill="#f3f6fb"><tspan x="170" y="510">說完就打好字</tspan><tspan x="170" y="620">現在快三倍</tspan></text>
+  <text font-size="32" fill="#c3ccda"><tspan x="170" y="700">新增 Vulkan 顯示卡加速，</tspan><tspan x="170" y="752">AMD、Intel、NVIDIA 都能用。</tspan></text>
+
+  <rect x="170" y="805" width="330" height="80" rx="22" fill="url(#gold)" stroke="#000" stroke-opacity=".3"/>
+  <rect x="170.5" y="805.5" width="329" height="79" rx="21.5" fill="none" stroke="url(#bevel)"/>
+  <text x="335" y="857" font-size="30" font-weight="700" fill="#2a1c02" text-anchor="middle">免費下載</text>
+  <rect x="525" y="805" width="330" height="80" rx="22" fill="url(#ti)" stroke="#000" stroke-opacity=".55"/>
+  <rect x="525.5" y="805.5" width="329" height="79" rx="21.5" fill="none" stroke="url(#bevel)" stroke-opacity=".6"/>
+  <text x="690" y="857" font-size="30" font-weight="700" fill="#f6f8fb" text-anchor="middle">看更新內容</text>
+  <!-- metal record knob, right side focal accent -->
+  <g transform="translate(820 330)">
+    <circle r="96" fill="#2dd4bf" fill-opacity=".14" stroke="#2dd4bf" stroke-opacity=".45" stroke-width="2"/>
+    <circle r="70" fill="url(#ti)" stroke="#000" stroke-opacity=".5"/>
+    <circle r="69" fill="none" stroke="url(#bevel)" stroke-opacity=".6"/>
+    <circle r="24" fill="url(#led)"/>
+    <circle r="40" fill="#e5484d" opacity=".25" filter="url(#blur)"/>
+  </g>
+</svg>
