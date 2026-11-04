@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { checkText, kindOf } from '../lib/detector.mjs';
 import { RULES, RULE_MAP, SEVERITIES } from '../lib/rules.mjs';
 
-const VERSION = '0.1.0';
+const VERSION = '0.2.0';
 const SKIP_DIRS = new Set(['node_modules', '.git', 'target', 'dist', 'build', '.next', 'out', 'vendor', 'coverage', '.venv']);
 
 function usage() {

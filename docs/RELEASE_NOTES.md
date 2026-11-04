@@ -1,8 +1,10 @@
-First release of design-sense.
+Premium templates: glass, metal, big radii, soft depth.
 
-- Skill `design-sense` with 19 design commands, 5 platform guides (web, Slint, Windows, social graphics, zh-TW typography), and PRODUCT.md / DESIGN.md templates.
-- `design-sense check`: 46 deterministic rules for HTML, CSS, JSX/TSX, Vue, Svelte, Slint and SVG. It outputs text or JSON, uses P0–P3 severities, and supports a config file, ignore globs and inline suppressions.
-- Adapters: Claude Code plugin with a fail-open PostToolUse hook, Cursor rule, AGENTS.md, Copilot and GEMINI.md snippets, and `install.mjs` with `--dry-run`.
-- GitHub Action `stevenke1981/design-sense@v0.1.0`.
+- `templates/premium/web/`: dashboard, landing and login pages with frosted glass (`backdrop-filter` with a tinted fallback), brushed silver/gold/titanium buttons, a radius and shadow token scale, dark and light themes, zh-TW font stack, reduced-motion support. No external dependencies.
+- `templates/premium/slint/`: `tokens.slint` + `components.slint` (GlassPanel, MetalButton, GlassToggle, GlassSlider, GlassTabs, IconButton with tooltip) and a demo settings window. Slint has no backdrop blur, so glass is emulated with layered translucent gradients, a rim highlight and shadows. A small `render/` crate writes PNGs (Skia via a display, or the headless software renderer).
+- `templates/premium/social/post.svg`: a 1080×1080 launch post in the same style.
+- New skill reference `reference/premium-glass-metal.md`: glass and metal recipes, radius and shadow scales, do/don't, accessibility and `backdrop-filter` performance caveats. Linked from SKILL.md.
+- Screenshots in `docs/images/premium/`; all templates pass `design-sense check` with 0 findings, enforced by a new test.
+- The release zip now includes `templates/`.
 
 Verify the download: `sha256sum -c SHA256SUMS.txt` (or `Get-FileHash` on Windows).

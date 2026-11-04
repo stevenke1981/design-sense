@@ -1,12 +1,12 @@
 {
   "name": "design-sense",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Design vocabulary skill + deterministic anti-AI-slop UI linter for coding agents (web, Slint, social graphics, zh-TW).",
   "type": "module",
   "bin": { "design-sense": "bin/design-sense.mjs" },
-  "scripts": { "test": "node --test test/detector.test.mjs test/hook.test.mjs test/install.test.mjs" },
+  "scripts": { "test": "node --test test/detector.test.mjs test/hook.test.mjs test/install.test.mjs test/templates.test.mjs" },
   "engines": { "node": ">=18" },
   "license": "Apache-2.0",
   "repository": "github:stevenke1981/design-sense",
-  "files": ["bin", "lib", "skills", "adapters", "install.mjs", "LICENSE", "NOTICE.md"]
+  "files": ["bin", "lib", "skills", "templates", "adapters", "install.mjs", "LICENSE", "NOTICE.md"]
 }

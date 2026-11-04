@@ -16,6 +16,22 @@ A **design vocabulary and local UI linter for coding agents** (Claude Code, Curs
 
 Full outputs for HTML and Slint samples are in `docs/demo/*.txt` and `docs/demo/demo-report.json`.
 
+## Premium templates (glass + metal)
+
+`templates/premium/` holds ready-to-adapt templates: frosted-glass panels, brushed-metal buttons (silver, gold, titanium), generous radii and layered soft shadows, in dark and light, all passing `design-sense check` with 0 findings. The recipes are in [`reference/premium-glass-metal.md`](skills/design-sense/reference/premium-glass-metal.md), which agents load for "premium / glass / metal" requests.
+
+| Dashboard (dark) | Landing (light) |
+|---|---|
+| ![dashboard](docs/images/premium/dashboard-dark.png) | ![landing](docs/images/premium/landing-light.png) |
+| **Login card (dark)** | **Slint settings window (dark)** |
+| ![login](docs/images/premium/login-dark.png) | ![slint](docs/images/premium/slint-dark.png) |
+
+- **Web:** `web/dashboard.html`, `web/landing.html`, `web/login.html`, sharing `glass.css` (tokens) and `theme.js` (dark/light, or `?theme=light`). No external dependencies.
+- **Slint:** `slint/tokens.slint`, `slint/components.slint` (GlassPanel, MetalButton, GlassToggle, GlassSlider, GlassTabs, IconButton with tooltip) and `slint/demo.slint`. Slint has no backdrop blur, so glass is emulated with a translucent tint, a sheen gradient, a bright rim and shadows. Screenshots were rendered with Skia on Linux; see [slint/README.md](templates/premium/slint/README.md).
+- **Social:** `social/post.svg` (1080×1080), [preview](docs/images/premium/social-post.png).
+
+Regenerate web screenshots with `scripts/shoot-premium.sh` (needs Chrome).
+
 ## Install
 
 Get the release zip (verify it with `SHA256SUMS.txt`) or `git clone`. Then run:

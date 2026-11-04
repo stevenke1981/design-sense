@@ -1,6 +1,6 @@
 ---
 name: design-sense
-description: Use whenever you create, edit, review or restyle anything a person will look at — web UI (HTML, CSS, React/TSX/JSX, Vue, Svelte, Tailwind), Slint desktop UI (.slint), Windows desktop apps, or social-media images/cards — and when the user asks to critique, audit, polish, simplify, make bolder/quieter, fix typography, color, layout, motion, copy, accessibility, responsiveness, zh-TW/CJK text, or document a design system (PRODUCT.md, DESIGN.md). Gives a shared design vocabulary (named commands) and a deterministic local linter (`design-sense check`). Skip for backend-only work.
+description: Use whenever you create, edit, review or restyle anything a person will look at — web UI (HTML, CSS, React/TSX/JSX, Vue, Svelte, Tailwind), Slint desktop UI (.slint), Windows desktop apps, or social-media images/cards — and when the user asks to critique, audit, polish, simplify, make bolder/quieter, fix typography, color, layout, motion, copy, accessibility, responsiveness, zh-TW/CJK text, or document a design system (PRODUCT.md, DESIGN.md). Gives a shared design vocabulary (named commands) and a deterministic local linter (`design-sense check`). Skip for backend-only work. Also for premium looks: glassmorphism, metallic gradients, rounded depth.
 license: Apache-2.0
 ---
 
@@ -26,7 +26,8 @@ opinions first, then checks, then proof.
 3. **Load the platform reference** that matches the files you touch:
    web → `reference/platform-web.md`; `.slint` → `reference/platform-slint.md`;
    any Windows app → `reference/platform-windows.md`; images for posts →
-   `reference/social-graphics.md`; any Chinese text → `reference/zh-tw-typography.md`.
+   `reference/social-graphics.md`; any Chinese text → `reference/zh-tw-typography.md`;
+   glass / metal / "premium, 高級質感" looks → `reference/premium-glass-metal.md`.
 4. **Run the linter on what you changed** before you say you are done:
    `node <this-skill-dir>/../../bin/design-sense.mjs check <changed files>`
    (or `design-sense check …` / `npx --no-install design-sense check …` if

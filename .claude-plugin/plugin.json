@@ -1,6 +1,6 @@
 {
   "name": "design-sense",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Design vocabulary skill + local, fail-open UI lint hook (web, Slint, social graphics, zh-TW).",
   "author": { "name": "stevenke1981" },
   "homepage": "https://github.com/stevenke1981/design-sense",

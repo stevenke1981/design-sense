@@ -28,6 +28,22 @@ docs/demo/sloppy.slint
 ```
 完整輸出在 `docs/demo/*.txt` 和 `docs/demo/demo-report.json`。
 
+## 高級質感範本（玻璃 + 金屬）
+
+`templates/premium/` 有一組可以直接拿來改的範本：毛玻璃面板、拉絲金屬按鈕（銀、金、鈦）、大圓角、柔和的多層陰影，深色和淺色都有，全部通過 `design-sense check`（0 項）。做法整理在 [`reference/premium-glass-metal.md`](skills/design-sense/reference/premium-glass-metal.md)，AI 助手碰到「高級、質感、玻璃」這類需求會自動讀它。
+
+| 控制台（深色） | 首頁（淺色） |
+|---|---|
+| ![dashboard](docs/images/premium/dashboard-dark.png) | ![landing](docs/images/premium/landing-light.png) |
+| **登入卡片（深色）** | **Slint 設定視窗（深色）** |
+| ![login](docs/images/premium/login-dark.png) | ![slint](docs/images/premium/slint-dark.png) |
+
+- **網頁：** `web/dashboard.html`、`web/landing.html`、`web/login.html`，共用 `glass.css`（設計 token）和 `theme.js`（深淺切換，網址加 `?theme=light` 也行）。不需要任何外部套件。
+- **Slint：** `slint/tokens.slint`、`slint/components.slint`（GlassPanel、MetalButton、GlassToggle、GlassSlider、GlassTabs、附 tooltip 的 IconButton）、`slint/demo.slint`。Slint 沒有背景模糊，所以玻璃是用半透明底、光澤漸層、亮邊和陰影模擬的。截圖是在 Linux 上用 Skia 畫的，見 [slint/README.md](templates/premium/slint/README.md)。
+- **社群圖片：** `social/post.svg`（1080×1080），[預覽](docs/images/premium/social-post.png)。
+
+重新產生網頁截圖：`scripts/shoot-premium.sh`（需要 Chrome）。
+
 ## 安裝
 
 需要 Node.js 18 以上。先下載 [Release](https://github.com/stevenke1981/design-sense/releases) 的 zip（可用 `SHA256SUMS.txt` 驗證），或用 `git clone`，然後在你的專案執行：
