@@ -1,0 +1,17 @@
+import { Button } from "std-widgets.slint";
+export component MainWindow inherits Window {
+    title: "下載管理";
+    background: #ffffff;
+    Text { text: "🚀 開始下載"; color: #bbbbbb; font-size: 9px; font-italic: true; }
+    Rectangle { background: #e11d48; Text { text: "狀態"; color: #808080; } }
+    Rectangle { background: @linear-gradient(90deg, #7c3aed 0%, #3b82f6 100%); }
+    Button { icon: @image-url("open.svg"); }
+    Rectangle { background: #111; border-color: #222; }
+    Rectangle { background: #333; border-color: #444; }
+    Rectangle { background: #555; border-color: #666; }
+    Rectangle { background: #777; border-color: #888; }
+}
+component IconTile {
+    callback clicked;
+    TouchArea { clicked => { root.clicked(); } }
+}

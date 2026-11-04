@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root { --ink: #1f2328; --paper: #fbfaf7; --accent: #b4532a; }
+  body { font-family: "Source Serif 4", "Noto Serif TC", "PingFang TC", "Microsoft JhengHei UI", serif; line-height: 1.75; color: #1f2328; background: #fbfaf7; }
+  .wrap { max-width: 68rem; width: 100%; margin: 0 auto; }
+  h1 { font-size: 2.5rem; }
+  .btn { padding: 10px 16px; border-radius: 6px; color: #ffffff; background: #9a3f1c; transition: background-color .2s; }
+  .btn:focus-visible { outline: 3px solid #b4532a; outline-offset: 2px; }
+  strong { font-weight: 700; }
+  @media (prefers-reduced-motion: no-preference) { .btn { transition: background-color .2s; } }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>寫給自己的筆記</h1>
+    <h2>它能做什麼</h2>
+    <p>把今天看到的東西記下來，<strong>明天</strong>還找得到。</p>
+    <img src="shot.png" alt="筆記畫面" width="800" height="500">
+    <label for="mail">電子郵件</label>
+    <input id="mail" type="email">
+    <button class="btn" aria-label="搜尋"><svg viewBox="0 0 10 10"></svg></button>
+    <a href="/docs">說明文件</a>
+  </main>
+</body>
+</html>
