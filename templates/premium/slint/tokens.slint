@@ -1,0 +1,78 @@
+// design-sense premium template: design tokens.
+// Every color lives here so components never hardcode literals.
+// Slint has no backdrop blur. "Glass" is emulated with: a tinted translucent
+// base + a diagonal white sheen + a 1px bright rim + a soft drop shadow,
+// all over a rich gradient background. Keep text on the tinted base so it
+// stays readable regardless of what is behind it.
+
+export global Tokens {
+    in-out property <bool> dark: true;
+
+    // typography
+    out property <length> font-body: 14px;
+    out property <length> font-small: 13px;
+    out property <length> font-title: 20px;
+    out property <length> font-display: 28px;
+
+    // radius scale
+    out property <length> r-xs: 8px;
+    out property <length> r-sm: 12px;
+    out property <length> r-md: 18px;
+    out property <length> r-lg: 26px;
+    out property <length> r-xl: 34px;
+
+    // spacing
+    out property <length> s1: 4px;
+    out property <length> s2: 8px;
+    out property <length> s3: 12px;
+    out property <length> s4: 16px;
+    out property <length> s5: 24px;
+    out property <length> s6: 32px;
+
+    // surfaces
+    out property <color> bg-0: dark ? #070b12 : #eef2f7;
+    out property <color> bg-1: dark ? #0d1522 : #dfe6ef;
+    out property <color> glow-a: dark ? #14b8a66b : #14b8a64d;
+    out property <color> glow-b: dark ? #f59e0b4d : #f59e0b42;
+    out property <color> glow-c: dark ? #f4725e42 : #f4725e33;
+    out property <color> glass-base: dark ? #101826a0 : #ffffffb0;
+    out property <color> glass-sheen: dark ? #ffffff24 : #ffffffe6;
+    out property <color> glass-sheen-end: dark ? #ffffff05 : #ffffff40;
+    out property <color> glass-rim: dark ? #ffffff2e : #ffffffdd;
+    out property <color> glass-rim-strong: dark ? #ffffff4d : #ffffff;
+    out property <color> field: dark ? #060a128c : #ffffffc0;
+    out property <color> divider: dark ? #ffffff1f : #0f172a1a;
+    out property <color> shadow: dark ? #0000008c : #0f172a38;
+    out property <color> transparent: #00000000;
+
+    // text (all pass 4.5:1 on glass-base over bg)
+    out property <color> text: dark ? #f3f6fb : #0e1622;
+    out property <color> text-2: dark ? #c3ccda : #334155;
+    out property <color> text-3: dark ? #9aa6b8 : #4b5768;
+    out property <color> accent: dark ? #2dd4bf : #0f766e;
+    out property <color> warm-text: dark ? #f0c65a : #8a5a12;
+    out property <color> accent-ink: dark ? #04201c : #ffffff;
+    out property <color> track: dark ? #7f8ca059 : #94a3b866;
+    out property <color> tooltip-bg: #1a2433;
+    out property <color> tooltip-text: #f3f6fb;
+
+    // metals: top highlight, upper mid, horizon (dark band), lower reflection
+    out property <color> silver-0: #f7f9fc;
+    out property <color> silver-1: #d5dbe4;
+    out property <color> silver-2: #aab3c0;
+    out property <color> silver-3: #e3e8ef;
+    out property <color> silver-ink: #15181d;
+    out property <color> gold-0: #fff1c9;
+    out property <color> gold-1: #f0c65a;
+    out property <color> gold-2: #b8862a;
+    out property <color> gold-3: #f5d684;
+    out property <color> gold-ink: #2a1c02;
+    out property <color> ti-0: #8a94a3;
+    out property <color> ti-1: #4d5664;
+    out property <color> ti-2: #2e3540;
+    out property <color> ti-3: #6b7584;
+    out property <color> ti-ink: #f6f8fb;
+    out property <color> bevel-hi: #ffffffd9;
+    out property <color> bevel-lo: #00000047;
+    out property <color> edge: #00000059;
+}

@@ -1,0 +1,21 @@
+[package]
+name = "premium-render"
+version = "0.1.0"
+edition = "2021"
+publish = false
+description = "PNG renderer for the design-sense premium Slint template."
+
+[features]
+# default: headless software renderer (no display needed, but it does not clip
+# gradients to border-radius, so metal buttons get square corners).
+default = ["software"]
+software = ["slint/renderer-software", "slint/software-renderer-systemfonts"]
+# skia: same renderer the real Windows apps use; needs a display (xvfb-run works).
+skia = ["slint/renderer-skia", "slint/backend-winit"]
+
+[dependencies]
+slint = { version = "1.18", default-features = false, features = ["std", "compat-1-2"] }
+png = "0.17"
+
+[build-dependencies]
+slint-build = "1.18"

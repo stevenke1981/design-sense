@@ -1,0 +1,150 @@
+// design-sense premium template: a glass-style settings window.
+// Preview: slint-viewer demo.slint   (or the render/ crate for a PNG)
+import { Tokens } from "tokens.slint";
+import { AuroraBackground, GlassPanel, MetalButton, Metal, GlassToggle, GlassSlider, GlassTabs, IconButton } from "components.slint";
+
+component SettingRow inherits HorizontalLayout {
+    in property <string> title;
+    in property <string> hint;
+    in-out property <bool> on;
+    spacing: Tokens.s4;
+    padding-top: Tokens.s3; padding-bottom: Tokens.s3;
+    VerticalLayout {
+        alignment: center;
+        Text { text: root.title; color: Tokens.text; font-size: Tokens.font-body + 1px; font-weight: 700; }
+        Text { text: root.hint; color: Tokens.text-2; font-size: Tokens.font-small; }
+    }
+    VerticalLayout { alignment: center; GlassToggle { checked <=> root.on; label: root.title; } }
+}
+
+component Stat inherits GlassPanel {
+    in property <string> key;
+    in property <string> value;
+    in property <string> note;
+    in property <color> tone: Tokens.accent;
+    inset: Tokens.s5;
+    Text { text: root.key; color: Tokens.text-2; font-size: Tokens.font-small; font-weight: 700; }
+    Text { text: root.value; color: Tokens.text; font-size: Tokens.font-display; font-weight: 800; }
+    Text { text: root.note; color: root.tone; font-size: Tokens.font-small; font-weight: 700; }
+}
+
+export component PremiumDemo inherits Window {
+    in property <string> ui-font: "Microsoft JhengHei UI";
+    in-out property <bool> dark <=> Tokens.dark;
+    title: "Aurora 語音 · 設定";
+    min-width: 880px; min-height: 600px;
+    preferred-width: 1040px; preferred-height: 680px;
+    default-font-family: ui-font;
+    background: Tokens.bg-0;
+
+    AuroraBackground {
+        HorizontalLayout {
+            padding: Tokens.s5; spacing: Tokens.s5;
+            // sidebar
+            GlassPanel {
+                width: 210px;
+                inset: Tokens.s4;
+                HorizontalLayout {
+                    spacing: Tokens.s3; padding-bottom: Tokens.s5; padding-left: Tokens.s2;
+                    Rectangle {
+                        width: 36px; height: 36px; border-radius: Tokens.r-sm;
+                        background: @linear-gradient(180deg, Tokens.gold-0 0%, Tokens.gold-1 36%, Tokens.gold-2 54%, Tokens.gold-3 100%);
+                        Text { text: "A"; color: Tokens.gold-ink; font-size: 18px; font-weight: 800; }
+                    }
+                    Text { text: "Aurora 語音"; color: Tokens.text; font-size: Tokens.font-body + 2px; font-weight: 700; vertical-alignment: center; }
+                }
+                for item[i] in ["總覽", "轉寫紀錄", "模型管理", "快捷鍵", "關於"]: Rectangle {
+                    height: 40px; border-radius: Tokens.r-sm;
+                    background: i == 0 ? Tokens.glass-sheen : Tokens.transparent;
+                    accessible-role: button; accessible-label: item;
+                    Text { x: Tokens.s3; text: item; color: i == 0 ? Tokens.text : Tokens.text-2; font-size: Tokens.font-body + 1px; font-weight: 700; vertical-alignment: center; }
+                }
+                Rectangle { }
+            }
+            VerticalLayout {
+                spacing: Tokens.s5;
+                // header
+                GlassPanel {
+                    radius: Tokens.r-md; inset: Tokens.s4;
+                    HorizontalLayout {
+                        spacing: Tokens.s3; padding-left: Tokens.s2;
+                        VerticalLayout {
+                            alignment: center;
+                            Text { text: "OVERVIEW"; color: Tokens.accent; font-size: Tokens.font-small - 1px; font-weight: 800; letter-spacing: 1.5px; }
+                            Text { text: "早安，今天也順利"; color: Tokens.text; font-size: Tokens.font-title + 2px; font-weight: 800; }
+                        }
+                        Rectangle { horizontal-stretch: 1; }
+                        VerticalLayout { alignment: center; GlassTabs { tabs: ["今天", "本週", "本月"]; current: 1; } }
+                        VerticalLayout { alignment: center;
+                            IconButton { tooltip: "通知"; icon-path: "M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8M10 20a2 2 0 0 0 4 0"; }
+                        }
+                        VerticalLayout { alignment: center;
+                            IconButton { tooltip: "切換淺色／深色"; icon-path: "M12 8a4 4 0 1 0 0 8a4 4 0 1 0 0-8M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"; clicked => { Tokens.dark = !Tokens.dark; } }
+                        }
+                    }
+                }
+                HorizontalLayout {
+                    spacing: Tokens.s5;
+                    Stat { key: "轉寫字數"; value: "48,210"; note: "比上週 +12%"; }
+                    Stat { key: "平均延遲"; value: "0.84 秒"; note: "GPU · Vulkan"; tone: Tokens.warm-text; }
+                    Stat { key: "辨識準確率"; value: "96.4%"; note: "large-v3-turbo"; }
+                }
+                HorizontalLayout {
+                    spacing: Tokens.s5;
+                    GlassPanel {
+                        horizontal-stretch: 3;
+                        inset: Tokens.s5;
+                        Text { text: "偏好設定"; color: Tokens.text; font-size: Tokens.font-title; font-weight: 800; }
+                        SettingRow { title: "開機時自動啟動"; hint: "登入 Windows 後在背景待命"; on: true; }
+                        Rectangle { height: 1px; background: Tokens.divider; }
+                        SettingRow { title: "自動加上標點"; hint: "依語氣補上逗號與句號"; on: true; }
+                        Rectangle { height: 1px; background: Tokens.divider; }
+                        SettingRow { title: "轉成繁體中文"; hint: "輸出前將簡體字轉為台灣用字"; on: false; }
+                        Rectangle { height: 1px; background: Tokens.divider; }
+                        HorizontalLayout {
+                            padding-top: Tokens.s3;
+                            Text { text: "麥克風靈敏度"; color: Tokens.text; font-size: Tokens.font-body + 1px; font-weight: 700; }
+                            Rectangle { horizontal-stretch: 1; }
+                            Text { text: round(sens.value * 100) + "%"; color: Tokens.text-2; font-size: Tokens.font-body; }
+                        }
+                        sens := GlassSlider { value: 0.7; label: "麥克風靈敏度"; }
+                        Rectangle { vertical-stretch: 1; }
+                    }
+                    GlassPanel {
+                        horizontal-stretch: 2;
+                        inset: Tokens.s5;
+                        gap: Tokens.s4;
+                        Text { text: "硬體加速"; color: Tokens.text; font-size: Tokens.font-title; font-weight: 800; }
+                        Rectangle {
+                            vertical-stretch: 1; min-height: 150px;
+                            border-radius: Tokens.r-md; background: Tokens.field;
+                            border-width: 1px; border-color: Tokens.glass-rim;
+                            VerticalLayout {
+                                alignment: center; spacing: Tokens.s3;
+                                HorizontalLayout { alignment: center;
+                                    Rectangle {
+                                        width: 104px; height: 104px; border-radius: 52px;
+                                        background: @linear-gradient(180deg, Tokens.ti-0 0%, Tokens.ti-1 40%, Tokens.ti-2 56%, Tokens.ti-3 100%);
+                                        border-width: 4px; border-color: Tokens.accent;
+                                        drop-shadow-color: Tokens.shadow; drop-shadow-blur: 18px; drop-shadow-offset-y: 6px;
+                                        VerticalLayout { alignment: center;
+                                            Text { text: "72%"; color: Tokens.ti-ink; font-size: 26px; font-weight: 800; horizontal-alignment: center; }
+                                            Text { text: "GPU"; color: Tokens.silver-1; font-size: Tokens.font-small; horizontal-alignment: center; }
+                                        }
+                                    }
+                                }
+                                Text { text: "NVIDIA GeForce RTX 3060 Ti"; color: Tokens.text-2; font-size: Tokens.font-small; horizontal-alignment: center; }
+                            }
+                        }
+                        HorizontalLayout {
+                            spacing: Tokens.s3; alignment: center;
+                            MetalButton { text: "重新偵測"; metal: Metal.silver; }
+                            MetalButton { text: "套用設定"; metal: Metal.gold; }
+                            MetalButton { text: "進階"; metal: Metal.titanium; }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

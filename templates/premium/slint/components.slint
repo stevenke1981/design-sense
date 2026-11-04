@@ -1,0 +1,231 @@
+// design-sense premium template: reusable glass + metal components.
+import { Tokens } from "tokens.slint";
+
+export enum Metal { silver, gold, titanium }
+
+// Gradient background with three soft color glows. Put it first in a Window.
+export component AuroraBackground inherits Rectangle {
+    background: @linear-gradient(160deg, Tokens.bg-1 0%, Tokens.bg-0 100%);
+    Rectangle {
+        x: -parent.width * 0.25; y: -parent.height * 0.35;
+        width: parent.width * 0.8; height: parent.width * 0.8;
+        background: @radial-gradient(circle, Tokens.glow-a 0%, Tokens.transparent 70%);
+    }
+    Rectangle {
+        x: parent.width * 0.6; y: -parent.height * 0.3;
+        width: parent.width * 0.6; height: parent.width * 0.6;
+        background: @radial-gradient(circle, Tokens.glow-b 0%, Tokens.transparent 70%);
+    }
+    Rectangle {
+        x: parent.width * 0.35; y: parent.height * 0.55;
+        width: parent.width * 0.7; height: parent.width * 0.7;
+        background: @radial-gradient(circle, Tokens.glow-c 0%, Tokens.transparent 70%);
+    }
+    @children
+}
+
+// Emulated frosted glass: tinted base + sheen + rim + shadow. No real blur.
+export component GlassPanel inherits Rectangle {
+    in property <length> radius: Tokens.r-lg;
+    in property <length> inset: Tokens.s5;
+    in property <length> gap: Tokens.s2;
+    in property <bool> raised: false;
+    border-radius: radius;
+    background: Tokens.glass-base;
+    drop-shadow-color: Tokens.shadow;
+    drop-shadow-blur: raised ? 48px : 28px;
+    drop-shadow-offset-y: raised ? 20px : 10px;
+    // sheen
+    Rectangle {
+        border-radius: root.radius;
+        background: @linear-gradient(145deg, Tokens.glass-sheen 0%, Tokens.glass-sheen-end 55%, Tokens.transparent 100%);
+    }
+    // rim
+    Rectangle {
+        border-radius: root.radius;
+        border-width: 1px;
+        border-color: Tokens.glass-rim;
+    }
+    // top specular line
+    Rectangle {
+        y: 0; height: 1px; x: root.radius; width: root.width - 2 * root.radius;
+        background: @linear-gradient(90deg, Tokens.transparent 0%, Tokens.glass-rim-strong 30%, Tokens.glass-rim-strong 70%, Tokens.transparent 100%);
+    }
+    VerticalLayout {
+        padding: root.inset;
+        spacing: root.gap;
+        @children
+    }
+}
+
+// Metallic button with bevel, hover lift and pressed sink.
+export component MetalButton inherits Rectangle {
+    in property <string> text;
+    in property <Metal> metal: Metal.silver;
+    in property <bool> enabled: true;
+    callback clicked;
+    property <color> c0: metal == Metal.gold ? Tokens.gold-0 : metal == Metal.titanium ? Tokens.ti-0 : Tokens.silver-0;
+    property <color> c1: metal == Metal.gold ? Tokens.gold-1 : metal == Metal.titanium ? Tokens.ti-1 : Tokens.silver-1;
+    property <color> c2: metal == Metal.gold ? Tokens.gold-2 : metal == Metal.titanium ? Tokens.ti-2 : Tokens.silver-2;
+    property <color> c3: metal == Metal.gold ? Tokens.gold-3 : metal == Metal.titanium ? Tokens.ti-3 : Tokens.silver-3;
+    property <color> ink: metal == Metal.gold ? Tokens.gold-ink : metal == Metal.titanium ? Tokens.ti-ink : Tokens.silver-ink;
+    height: 44px;
+    min-width: label.preferred-width + 44px;
+    border-radius: Tokens.r-sm;
+    opacity: enabled ? 1.0 : 0.5;
+    background: touch.pressed
+        ? @linear-gradient(180deg, c2 0%, c1 45%, c3 100%)
+        : @linear-gradient(180deg, c0 0%, c1 38%, c2 52%, c3 100%);
+    border-width: 1px;
+    border-color: Tokens.edge;
+    drop-shadow-color: Tokens.shadow;
+    drop-shadow-blur: touch.has-hover && !touch.pressed ? 18px : 8px;
+    drop-shadow-offset-y: touch.pressed ? 0px : touch.has-hover ? 6px : 3px;
+    accessible-role: button;
+    accessible-label: text;
+    accessible-action-default => { touch.clicked(); }
+    animate drop-shadow-blur, drop-shadow-offset-y { duration: 140ms; easing: ease-out; }
+    // bevel highlight
+    Rectangle {
+        x: root.border-radius; y: 1px; width: parent.width - 2 * root.border-radius; height: 1px;
+        background: touch.pressed ? Tokens.bevel-lo : Tokens.bevel-hi;
+    }
+    // hover sheen
+    Rectangle {
+        border-radius: root.border-radius;
+        background: touch.has-hover && !touch.pressed ? Tokens.glass-sheen : Tokens.transparent;
+    }
+    label := Text {
+        text: root.text;
+        color: root.ink;
+        font-size: Tokens.font-body + 1px;
+        font-weight: 700;
+        horizontal-alignment: center;
+        vertical-alignment: center;
+    }
+    touch := TouchArea {
+        enabled: root.enabled;
+        mouse-cursor: pointer;
+        clicked => { root.clicked(); }
+    }
+}
+
+// Toggle with metal knob.
+export component GlassToggle inherits Rectangle {
+    in-out property <bool> checked;
+    in property <string> label;
+    callback toggled(bool);
+    width: 48px; height: 28px;
+    border-radius: 14px;
+    background: checked ? Tokens.accent : Tokens.track;
+    accessible-role: switch;
+    accessible-label: label;
+    accessible-checked: checked;
+    accessible-action-default => { ta.clicked(); }
+    animate background { duration: 160ms; }
+    knob := Rectangle {
+        x: root.checked ? 23px : 3px; y: 3px; width: 22px; height: 22px;
+        border-radius: 11px;
+        background: @linear-gradient(180deg, Tokens.silver-0 0%, Tokens.silver-1 45%, Tokens.silver-2 60%, Tokens.silver-3 100%);
+        border-width: 1px; border-color: Tokens.edge;
+        drop-shadow-color: Tokens.shadow; drop-shadow-blur: 4px; drop-shadow-offset-y: 1px;
+        animate x { duration: 180ms; easing: ease-out; }
+    }
+    ta := TouchArea {
+        mouse-cursor: pointer;
+        clicked => { root.checked = !root.checked; root.toggled(root.checked); }
+    }
+}
+
+// Slider: recessed track, accent fill, metal thumb.
+export component GlassSlider inherits Rectangle {
+    in-out property <float> value: 0.5;   // 0..1
+    in property <string> label;
+    height: 28px;
+    min-width: 120px;
+    accessible-role: slider;
+    accessible-label: label;
+    accessible-value: round(value * 100) + "%";
+    accessible-value-minimum: 0;
+    accessible-value-maximum: 1;
+    Rectangle {
+        y: (parent.height - 6px) / 2; height: 6px;
+        border-radius: 3px; background: Tokens.track;
+    }
+    Rectangle {
+        y: (parent.height - 6px) / 2; height: 6px; x: 0;
+        width: root.value * root.width;
+        border-radius: 3px; background: Tokens.accent;
+    }
+    Rectangle {
+        x: root.value * (root.width - 22px); y: 3px; width: 22px; height: 22px; border-radius: 11px;
+        background: @linear-gradient(180deg, Tokens.silver-0 0%, Tokens.silver-1 45%, Tokens.silver-2 60%, Tokens.silver-3 100%);
+        border-width: 1px; border-color: Tokens.edge;
+        drop-shadow-color: Tokens.shadow; drop-shadow-blur: 6px; drop-shadow-offset-y: 2px;
+    }
+    TouchArea {
+        mouse-cursor: pointer;
+        moved => { if (self.pressed) { root.value = max(0, min(1, self.mouse-x / root.width)); } }
+        pointer-event(e) => { if (e.kind == PointerEventKind.down) { root.value = max(0, min(1, self.mouse-x / root.width)); } }
+    }
+}
+
+// Segmented tabs: recessed field, selected tab is polished silver.
+export component GlassTabs inherits Rectangle {
+    in property <[string]> tabs;
+    in-out property <int> current: 0;
+    border-radius: Tokens.r-md;
+    background: Tokens.field;
+    border-width: 1px; border-color: Tokens.glass-rim;
+    accessible-role: tab-list;
+    HorizontalLayout {
+        padding: 4px; spacing: 4px;
+        for t[i] in root.tabs: Rectangle {
+            min-width: lbl.preferred-width + 32px; height: 36px;
+            border-radius: Tokens.r-sm;
+            background: i == root.current ? @linear-gradient(180deg, Tokens.silver-0 0%, Tokens.silver-1 45%, Tokens.silver-2 60%, Tokens.silver-3 100%) : Tokens.transparent;
+            drop-shadow-color: i == root.current ? Tokens.shadow : Tokens.transparent;
+            drop-shadow-blur: 6px; drop-shadow-offset-y: 2px;
+            accessible-role: tab;
+            accessible-label: t;
+            accessible-item-selected: i == root.current;
+            lbl := Text {
+                text: t; font-size: Tokens.font-body; font-weight: 700;
+                color: i == root.current ? Tokens.silver-ink : Tokens.text-2;
+                horizontal-alignment: center; vertical-alignment: center;
+            }
+            TouchArea { mouse-cursor: pointer; clicked => { root.current = i; } }
+        }
+    }
+}
+
+// Icon button with a hover tooltip and an accessible name.
+export component IconButton inherits Rectangle {
+    in property <string> icon-path;   // SVG path data in a 24x24 box
+    in property <string> tooltip;
+    callback clicked;
+    width: 40px; height: 40px;
+    border-radius: Tokens.r-sm;
+    background: ta.pressed ? Tokens.divider : ta.has-hover ? Tokens.glass-sheen : Tokens.field;
+    border-width: 1px; border-color: Tokens.glass-rim;
+    accessible-role: button;
+    accessible-label: tooltip;
+    accessible-action-default => { ta.clicked(); }
+    Path {
+        width: 20px; height: 20px;
+        viewbox-width: 24; viewbox-height: 24;
+        commands: root.icon-path;
+        stroke: Tokens.text; stroke-width: 1.8px;
+        fill: Tokens.transparent;
+    }
+    ta := TouchArea { mouse-cursor: pointer; clicked => { root.clicked(); } }
+    if ta.has-hover: Rectangle {
+        y: root.height + 8px;
+        x: (root.width - tip.preferred-width - 20px) / 2;
+        width: tip.preferred-width + 20px; height: 30px;
+        border-radius: Tokens.r-xs;
+        background: Tokens.tooltip-bg;
+        drop-shadow-color: Tokens.shadow; drop-shadow-blur: 12px; drop-shadow-offset-y: 4px;
+        tip := Text { text: root.tooltip; color: Tokens.tooltip-text; font-size: Tokens.font-small; vertical-alignment: center; horizontal-alignment: center; }
+    }
+}
