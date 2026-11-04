@@ -1,0 +1,7 @@
+{
+  "name": "design-sense",
+  "owner": { "name": "stevenke1981" },
+  "plugins": [
+    { "name": "design-sense", "source": "./", "description": "Design vocabulary skill + local UI lint hook." }
+  ]
+}
