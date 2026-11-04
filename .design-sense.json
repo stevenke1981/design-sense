@@ -1,0 +1,1 @@
+{ "ignore": ["test/fixtures/**", "docs/demo/**"] }

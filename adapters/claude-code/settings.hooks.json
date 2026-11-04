@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          { "type": "command", "command": "node \"$CLAUDE_PROJECT_DIR/.design-sense/hooks/post-edit.mjs\"", "timeout": 10 }
+        ]
+      }
+    ]
+  }
+}
